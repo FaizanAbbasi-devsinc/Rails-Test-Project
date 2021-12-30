@@ -1,0 +1,25 @@
+<%= form_with(model: @user, local: true) do |form| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(user.errors.count, "errors") %> Prohibited user from being saving:</h2>
+
+            <ul>
+                <% user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end%>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name , class: 'form-control' %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit class:'btn btn-primary' %>
+        <%= link_to 'Cencel', users_path, class:"btn btn-secondary" %>
+    </div>
+
+
+<% end %>

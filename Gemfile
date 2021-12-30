@@ -16,7 +16,7 @@ gem 'sass-rails', '>= 6'
 # Use Devise for Accounts
 gem 'devise'
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
-
+gem 'devise_invitable', '~> 2.0.0'
 gem 'rubocop-rails'
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -61,4 +61,5 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'table_print'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
