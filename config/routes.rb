@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: %i[index show edit update]
   resources :plans
+  resources :subscriptions
   devise_scope :user do
     root to: 'devise/sessions#new'
   end
