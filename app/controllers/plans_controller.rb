@@ -10,6 +10,8 @@ class PlansController < ApplicationController
 
     def create
         @plan = Plan.new(plan_params)
+        @plan.user_id = current_user.id
+        byebug
         if @plan.save
             redirect_to plans_path
         else
