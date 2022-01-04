@@ -15,8 +15,10 @@
       <th scope="row"><%= plan.id %></th>
       <td><%= plan.name %></td>
       <td><%= plan.monthly_fee %></td>
-      <td></td>
+      <td> <%= link_to 'Features Details', plan_features_path(plan) %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<button class="btn btn-danger"> <%= link_to 'Add New Plan', new_plan_path %></button>

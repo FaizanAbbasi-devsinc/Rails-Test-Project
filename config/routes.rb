@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   default_url_options :host => "localhost"
   get 'home' => 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :plans do
+    resources :features, only: [:index, :new, :create]
+  end
+  resources :features, only: [:show, :edit, :update, :destroy]
 end
