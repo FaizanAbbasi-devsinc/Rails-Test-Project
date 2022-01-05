@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :validatable
          
-  enum admin: [:admin, :buyer]
+  enum user: [:admin, :buyer]
 
   has_many :subscriptions
   has_many :plans, through: :subscriptions

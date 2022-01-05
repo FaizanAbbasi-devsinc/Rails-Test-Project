@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to current_user, notice: 'You Successfully updated your Profile' }
+        format.html { redirect_to current_user, notice: 'You successfully updated your profile' }
       else
         format.html { render :edit }
       end
