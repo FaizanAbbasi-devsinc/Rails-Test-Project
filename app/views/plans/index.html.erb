@@ -7,6 +7,8 @@
       <th scope="col">Name</th>
       <th scope="col">Monthly Price</th>
       <th scope="col">Admin Id </th>
+      <th scope="col"> Pay </th>
+
     </tr>
   </thead>
   <tbody>
@@ -18,7 +20,7 @@
       <td><%= plan.user_id%></td>
       
       <td> <%= link_to 'Features Details', plan_features_path(plan) %></td>
-      <td> <%= link_to 'Subscribe', plan_features_path(plan) %></td>
+      <td> <%= button_to 'Subscribe' , checkout_create_path, params: {id: plan.id}, remote: true %></td>
       
     </tr>
     <% end %>

@@ -16,4 +16,7 @@ Rails.application.routes.draw do
     resources :features, only: [:index, :new, :create]
   end
   resources :features, only: [:show, :edit, :update, :destroy]
+  post 'checkout/create', to: "checkout#create"
+  get 'checkout/add_subscription', to: "checkout#add_subscription"
+
 end
