@@ -23,7 +23,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      'Cache-Control' => 'public, max-age=#{2.days.to_i}'
     }
   else
     config.action_controller.perform_caching = false
@@ -80,8 +80,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'example.com',
-    user_name: ENV["MAIL_USERNAME"],
-    password: ENV["MAIL_PASSWORD"],
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD'],
     authentication: 'plain'
   }
 end

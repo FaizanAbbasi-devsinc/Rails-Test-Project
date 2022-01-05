@@ -2,12 +2,11 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec # or rubocop-minitest
- 
- 
+
 AllCops:
   # Exclude auto-generated files by Rails
   TargetRubyVersion: 2.7
-  TargetRailsVersion: 5.2
+  TargetRailsVersion: 6.1
   Exclude:
     - 'db/schema.rb'
     - 'node_modules/**/*'
