@@ -14,7 +14,7 @@ AllCops:
     - 'vendor/bundle/**/*'
     - 'bin/**/*'
     
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   
 Metrics/MethodLength:
@@ -33,4 +33,7 @@ Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/FilePath:
   Enabled: false
