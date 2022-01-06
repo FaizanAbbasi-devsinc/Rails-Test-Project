@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     root to: 'devise/sessions#new'
   end
-  default_url_options :host => 'localhost'
+  default_url_options host: 'localhost'
   get '/home', to:'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
