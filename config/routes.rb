@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, expect: [:new, :create, :destroy]
+  resources :users, expect: %i[new create destroy]
   devise_scope :user do
     root to: 'devise/sessions#new'
   end
   default_url_options host: 'localhost'
-  get '/home', to:'pages#home'
+  get '/home', to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
