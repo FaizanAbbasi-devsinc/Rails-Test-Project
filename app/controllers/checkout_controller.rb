@@ -1,22 +1,22 @@
 class CheckoutController < ApplicationController
     
     def create
-        plan = Plan.find(params[:id])
-        @session = Stripe::Checkout::Session.create({
-            payment_method_types: ['card'],
-            line_items: [{
-                name: plan.name,
-                amount: plan.monthly_fee.to_i,
-                currency: "usd",
-                quantity: 1
-                }],
-              mode: 'payment',
-              success_url:  checkout_add_subscription_url(plan_id: plan.id),
-              cancel_url: 'https://example.com/cancel'
-            })
-            respond_to do |format|
-                format.js
-            end
+      plan = Plan.find(params[:id])
+      @session = Stripe::Checkout::Session.create({
+          payment_method_types: ['card'],
+          line_items: [{
+              name: plan.name,
+              amount: plan.monthly_fee.to_i,
+              currency: "usd",
+              quantity: 1
+              }],
+            mode: 'payment',
+            success_url:  checkout_add_subscription_url(plan_id: plan.id),
+            cancel_url: 'https://example.com/cancel'
+          })
+          respond_to do |format|
+              format.js
+          end
     end
 
     def add_subscription

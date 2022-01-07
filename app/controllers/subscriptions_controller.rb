@@ -10,6 +10,11 @@ class SubscriptionsController < ApplicationController
         #   redirect_to plan_features_path(feature.plan_id)
         # end
       end
+
+    def index
+      @user = User.find(current_user.id)
+      @subscriptions = @user.subscriptions.all
+    end
     
     #   private
     #     def plan_params

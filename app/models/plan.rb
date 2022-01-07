@@ -3,6 +3,6 @@ class Plan < ApplicationRecord
     accepts_nested_attributes_for :features, allow_destroy: true, reject_if: :all_blank
     accepts_nested_attributes_for :features, reject_if: lambda {|attributes| attributes['code'].blank?}
 
-    has_many :users
-    has_many :subscriptions, through: :users
+    has_many :users, through: :subscriptions
+    has_many :subscriptions
 end

@@ -17,7 +17,7 @@
       <th scope="row"><%= plan.id %></th>
       <td><%= plan.name %></td>
       <td><%= plan.monthly_fee %></td>
-      <td><%= plan.user_id%></td>
+      <td><%= plan.user_id %></td>
       
       <td> <%= link_to 'Features Details', plan_features_path(plan) %></td>
       <td> <%= button_to 'Subscribe' , checkout_create_path, params: {id: plan.id}, remote: true %></td>
