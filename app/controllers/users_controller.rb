@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Class UsersController
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   before_action :set_user, only: %i[show edit update]
@@ -9,13 +8,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show
-    # show
-  end
+  def show; end
 
-  def edit
-    # edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
