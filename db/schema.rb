@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_125141) do
+ActiveRecord::Schema.define(version: 2022_01_07_065147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_125141) do
   create_table "features", force: :cascade do |t|
     t.string "name"
     t.integer "code"
-    t.integer "unit_price"
+    t.float "unit_price"
     t.integer "max_unit_limit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -28,13 +28,37 @@ ActiveRecord::Schema.define(version: 2022_01_03_125141) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
     t.integer "monthly_fee"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "plan_id"
+    t.bigint "user_id"
+    t.date "date"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "subscription_id"
+    t.bigint "user_id"
+    t.date "transactions_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
+    t.index ["subscription_id"], name: "index_transactions_on_subscription_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+>>>>>>> e3e6e5428a1b7029a76ac129232aadd32cbd4253
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -50,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_125141) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
-    t.integer "status", default: 1
+    t.integer "role", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
@@ -59,4 +83,9 @@ ActiveRecord::Schema.define(version: 2022_01_03_125141) do
   end
 
   add_foreign_key "features", "plans"
+  add_foreign_key "plans", "users"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "users"
+  add_foreign_key "transactions", "subscriptions"
+  add_foreign_key "transactions", "users"
 end
