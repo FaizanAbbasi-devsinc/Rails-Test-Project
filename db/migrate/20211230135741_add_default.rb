@@ -6,6 +6,6 @@ class AddDefault < ActiveRecord::Migration[6.1]
   end
 
   def down
-    change_column :users, :status, :integer, default: 0
+    change_column :users, :status, :integer
   end
 end
