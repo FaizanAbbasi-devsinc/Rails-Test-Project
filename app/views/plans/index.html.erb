@@ -20,7 +20,13 @@
       <td><%= plan.user_id %></td>
       
       <td> <%= link_to 'Features Details', plan_features_path(plan) %></td>
-      <td> <%= button_to 'Subscribe' , checkout_create_path, params: {id: plan.id}, remote: true %></td>
+
+      <% if findsubscriptions(current_user, plan.id) %>
+        <td> <%= button_to 'Un-Subscribe' , subscription_path(plan.id), remote: true, method: :delete %></td>
+      <% else %>
+        <td> <%= button_to 'Subscribe' , checkout_create_path, params: {id: plan.id}, remote: true %></td>
+      <% end %>
+
       
     </tr>
     <% end %>

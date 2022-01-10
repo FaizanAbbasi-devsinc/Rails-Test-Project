@@ -1,3 +1,4 @@
+
 class SubscriptionsController < ApplicationController
     def create
         byebug
@@ -16,8 +17,11 @@ class SubscriptionsController < ApplicationController
       @subscriptions = @user.subscriptions.all
     end
     
-    #   private
-    #     def plan_params
-    #         params.permit(:name, :monthly_fee, features_attributes: [:id, :name, :code, :unit_price, :max_unit_limit])
-    #     end
+    def destroy
+      @user = User.find(current_user.id)
+      @user.subscriptions.where(plan_id: params[:id]).destroy_all
+      flash[:success] = "The to-do item was successfully destroyed."
+      redirect_to subscriptions_path
+    end
+
 end
