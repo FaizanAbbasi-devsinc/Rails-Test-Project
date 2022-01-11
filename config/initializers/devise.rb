@@ -14,7 +14,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '9b97c5d2f9fefd720ed9603841117a773d5b91bb262ea97236bb2cd943881ab822c274e98dde6af442b1dda058d87925be85205b10bdf90e657519b36e379ec2'
+  # config.secret_key = '9b97c5d2f9fefd720ed9603841117a773d5b91bb262ea97236bb2cd943881ab822c274e98dde6af442b1dda058d879
+  # 25be85205b10bdf90e657519b36e379ec2'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -23,8 +24,8 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
-  # with default "from" parameter.
-  config.mailer_sender = 'faizan.shoukat@devsinc.com'
+  # with default 'from' parameter.
+  config.mailer_sender = ENV['MAIL_USERNAME']
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -75,7 +76,7 @@ Devise.setup do |config|
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication.
-  # For API-only applications to support authentication "out-of-the-box", you will likely want to
+  # For API-only applications to support authentication 'out-of-the-box', you will likely want to
   # enable this with :database unless you are using a custom strategy.
   # The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
@@ -126,7 +127,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '06b4f52c7f0886589ad521d84853aa332f82a8f450b920c8a3b8f2ae5cadc25f78c3a0d08ff5a853f4d1f00c6860469a8c8fe033a440eab98ab21643553d3466'
+  # config.pepper = '06b4f52c7f0886589ad521d84853aa332f82a8f450b920c8a3b8f2ae5cadc25f78c3a0d08ff5a853f4d1f00c6860469a8c8
+  # fe033a440eab98ab21643553d3466'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -273,7 +275,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = ENV['RESET_PASSWORD_TIME']
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
@@ -290,8 +292,8 @@ Devise.setup do |config|
   # config.encryptor = :sha512
 
   # ==> Scopes configuration
-  # Turn scoped views on. Before rendering "sessions/new", it will first check for
-  # "users/sessions/new". It's turned off by default because it's slower if you
+  # Turn scoped views on. Before rendering 'sessions/new', it will first check for
+  # 'users/sessions/new'. It's turned off by default because it's slower if you
   # are using only default views.
   # config.scoped_views = false
 
@@ -311,7 +313,7 @@ Devise.setup do |config|
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
   #
-  # The "*/*" below is required to match Internet Explorer requests.
+  # The '*/*' below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
