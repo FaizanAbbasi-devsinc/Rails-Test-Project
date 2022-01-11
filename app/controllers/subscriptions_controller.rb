@@ -1,7 +1,7 @@
 
 class SubscriptionsController < ApplicationController
     def create
-        byebug
+        # byebug
         @plan = Plan.find(params[:plan_id])
         
         # @subscription = Subscription.create(feature_params)
@@ -17,11 +17,17 @@ class SubscriptionsController < ApplicationController
       @subscriptions = @user.subscriptions.all
     end
     
-    def destroy
+    # def destroy
+    #   @user = User.find(current_user.id)
+    #   @user.subscriptions.where(plan_id: params[:id]).destroy_all
+    #   flash[:success] = "The to-do item was successfully destroyed."
+    #   redirect_to subscriptions_path
+    # end
+
+    def update
       @user = User.find(current_user.id)
-      @user.subscriptions.where(plan_id: params[:id]).destroy_all
-      flash[:success] = "The to-do item was successfully destroyed."
+      z = @user.subscriptions.where(plan_id: params[:id])
+      z.update_all(status: 1)
       redirect_to subscriptions_path
     end
-
 end

@@ -1,0 +1,27 @@
+<h1>Plans Index</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Usage Id</th>
+      <th scope="col">Used Unit</th>
+      <th scope="col">subscription id</th>
+      <th scope="col">max_unit_limit</th>
+      <th scope="col">Feature id</th>
+      <th scope="col">Plan id</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @usages.each do |usage| %>
+      <tr>
+        <td><%= usage.id %></td>
+        <td><%= usage.used_unit %></td>
+        <td><%= usage.subscription_id %></td>
+        <td><%= usage.max_unit_limit %></td>
+        <td><%= usage.features_id %></td>
+        <td><%= findplan(usage.id) %></td>
+        <td><%= link_to 'Enter Usage Details', edit_usage_path(usage.id) %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

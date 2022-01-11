@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_110033) do
+ActiveRecord::Schema.define(version: 2022_01_10_100139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2022_01_06_110033) do
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
+  create_table "usages", force: :cascade do |t|
+    t.integer "used_unit", default: 0
+    t.bigint "subscription_id", null: false
+    t.float "extra_usage_bill", default: 0.0
+    t.integer "max_unit_limit"
+    t.bigint "features_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["features_id"], name: "index_usages_on_features_id"
+    t.index ["subscription_id"], name: "index_usages_on_subscription_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,7 +86,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_110033) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
-    t.integer "status", default: 1
+    t.integer "role", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
@@ -88,4 +100,6 @@ ActiveRecord::Schema.define(version: 2022_01_06_110033) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "transactions", "subscriptions"
   add_foreign_key "transactions", "users"
+  add_foreign_key "usages", "features", column: "features_id"
+  add_foreign_key "usages", "subscriptions"
 end

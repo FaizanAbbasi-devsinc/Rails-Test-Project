@@ -1,7 +1,11 @@
-class Subscription < ApplicationRecord
-    belongs_to :user
-    has_many :transactions, dependent: :nullify 
-    belongs_to :plan
+# frozen_string_literal: true
 
-    enum status: [:subscribe, :unsubscribe]
+class Subscription < ApplicationRecord
+  belongs_to :user
+  has_many :transactions, dependent: :nullify
+  belongs_to :plan
+  has_many :usages, dependent: :delete_all
+  accepts_nested_attributes_for :usages
+  
+  enum status: %i[active inactive]
 end

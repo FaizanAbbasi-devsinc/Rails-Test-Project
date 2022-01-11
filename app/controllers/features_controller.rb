@@ -12,11 +12,11 @@ class FeaturesController < ApplicationController
 
   def create
     @plan = Plan.find(params[:plan_id])
-    @feature = @plan.features.create(feature_params)
+    @feature = @plan.features.new(feature_params)
     if @feature.save
       redirect_to plans_path
     else
-      redirect_to plan_features_path(feature.plan_id)
+      redirect_to plan_features_path(@feature.plan_id)
     end
   end
 

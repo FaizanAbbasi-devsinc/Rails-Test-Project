@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  used_unit: 1
+  subscription: one
+  extra_usage_bill: 1.5
+
+two:
+  used_unit: 1
+  subscription: two
+  extra_usage_bill: 1.5
