@@ -3,18 +3,19 @@
 Rails.application.routes.draw do
   get 'transactions/index'
   devise_for :users
-  resources :users, only: %i[index show edit update]
+  resources :users, expect: %i[new create destroy]
   resources :plans
   resources :subscriptions
   devise_scope :user do
     root to: 'devise/sessions#new'
   end
-  default_url_options :host => "localhost"
   resources :transactions, only: [:index]
+  default_url_options host: 'localhost'
+  get '/home', to: 'pages#home'
   resources :plans do
-    resources :features, only: [:index, :new, :create]
+    resources :features, only: %i[index new create]
   end
-  resources :features, only: [:show, :edit, :update, :destroy]
+  resources :features, only: %i[show edit update destroy]
   post 'checkout/create', to: "checkout#create"
   get 'checkout/add_subscription', to: "checkout#add_subscription"
   get 'home' => 'pages#home'
