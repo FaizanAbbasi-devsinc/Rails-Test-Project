@@ -1,0 +1,11 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  <%= render 'layouts/error', locals: { user: @user }  %>
+  <div class='form-group'>
+    <%= form.label :name %>
+    <%= form.text_field :name , class: 'form-control' %>
+  </div>
+  <div class='actions'>
+    <%= form.submit class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', users_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
