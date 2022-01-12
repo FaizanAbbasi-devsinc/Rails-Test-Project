@@ -2,8 +2,11 @@
 
 class SubscriptionsController < ApplicationController
   def index
-    @user = User.find(current_user.id)
-    @subscriptions = @user.subscriptions.all
+    @subscriptions = if current_user.admin?
+                       Subscription.all
+                     else
+                       current_user.subscriptions.all
+                     end
   end
 
   def destroy

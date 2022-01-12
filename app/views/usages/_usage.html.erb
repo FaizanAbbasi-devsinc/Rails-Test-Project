@@ -1,0 +1,8 @@
+<tr>
+  <td><%= usage.subscription_id %></td>
+  <td><%= usage.max_unit_limit %></td>
+  <td><%= usage.used_unit %></td>
+  <td><%= usage.features_id %></td>
+  <td><%= findplan(usage.id) %></td>
+  <td><%= link_to 'Enter Usage Details', edit_usage_path(usage.id) %></td>
+</tr>

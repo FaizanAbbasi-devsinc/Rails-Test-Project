@@ -1,0 +1,11 @@
+<tr>
+  <td><%= subscription.id %></td>
+  <td><%= subscription.plan_id %></td>
+  <td><%= subscription.date %></td>
+  <td><%= subscription.status %></td>
+  <% if current_user.buyer? %>
+    <% if findstatus(subscription.id) %>
+      <td><%= link_to 'Usage Details', usage_path(subscription) %></td>
+    <% end %>
+  <% end %>
+</tr>

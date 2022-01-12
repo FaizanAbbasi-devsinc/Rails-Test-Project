@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class TransactionTest < ActiveSupport::TestCase
-  # test "the truth" do
+  # test 'the truth' do
   #   assert true
   # end
 end

@@ -1,26 +1,16 @@
-<h1>Transaction Index</h1>
-
-<table class="table table-hover">
+<h1>Transactions</h1>
+<table class='table table-hover'>
   <thead>
     <tr>
-      <th scope="col">Transaction Id</th>
-      <%# <th scope="col">Subscription ID</th> %>
-      <th scope="col">User Id</th>
-      <th scope="col">Amount </th>
-      <th scope="col">Date</th>
-      <th scope="col">Bill Status</th>
+      <th scope='col'>Transaction Id</th>
+      <th scope='col'>User Id</th>
+      <th scope='col'>Amount </th>
+      <th scope='col'>Date</th>
+      <th scope='col'>Bill Status</th>
     </tr>
   </thead>
   <tbody>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.id %></td>
-        <%# <td><%= transaction.subscription_id %></td>
-        <td><%= transaction.user_id %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.transactions_date %></td>
-        <td><%= transaction.bill_status %></td>
-      </tr>
-    <% end %>
+    <%= render partial: 'transaction', collection: @transactions %>
   </tbody>
 </table>
+<%= link_to 'Back', :back %>

@@ -1,12 +1,11 @@
-
 <h1>Welcome to Billing & Recurring Payment System v2.0</h1>
 <nav>
-  <%= link_to 'Users', users_path %> |
+  <% if current_user.admin? %>
+  <%= link_to 'Users', users_path, class: 'btn btn-info' %> |
+  <% end %>
   <% if user_signed_in? %>
-    <%= link_to 'logout', destroy_user_session_path, method: :delete %> |
-    <%= link_to 'Profile', user_path(current_user.id) %> 
-  <% else %>
-    <%= link_to 'Sign up', new_user_registration_path %> 
+    <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'btn btn-info' %> |
+    <%= link_to 'Profile', user_path(current_user.id), class: 'btn btn-info' %> 
   <% end %>
 </nav>
 

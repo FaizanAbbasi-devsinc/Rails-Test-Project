@@ -1,26 +1,18 @@
-<h1>Subscription Index</h1>
-
-<table class="table table-hover">
+<h1>Subscriptions</h1>
+<table class='table table-hover'>
   <thead>
     <tr>
-      <th scope="col">Subscription Id</th>
-      <th scope="col">Plan Id</th>
-      <th scope="col">Date</th>
-      <th scope="col">Status</th>
-      <th scope="col">Usage Info</th>
+      <th scope='col'>Subscription Id</th>
+      <th scope='col'>Plan Id</th>
+      <th scope='col'>Date</th>
+      <th scope='col'>Status</th>
+      <% if current_user.buyer? %>
+        <th scope='col'>Usage Info</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @subscriptions.each do |subscription| %>
-      <tr>
-        <td><%= subscription.id %></td>
-        <td><%= subscription.plan_id %></td>
-        <td><%= subscription.date %></td>
-        <td><%= subscription.status %></td>
-        <% if findstatus(subscription.id) %>
-          <td><%= link_to 'Usage Details', usage_path(subscription) %></td>
-        <% end %>
-      </tr>
-    <% end %>
+    <%= render partial: 'subscription', collection: @subscriptions %>
   </tbody>
 </table>
+<%= link_to 'Back', :back %>

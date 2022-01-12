@@ -1,24 +1,4 @@
-<h1>New Article</h1>
-
-<%= form_with(model: [ @plan, @plan.features.build]) do |features_form| %>
-    <ul>    
-        <li>
-            <%= features_form.label :Name %>
-            <%= features_form.text_field :name %>
-
-            <%= features_form.label :Code %>
-            <%= features_form.number_field :code %>
-
-            <%= features_form.label :unit_price %>
-            <%= features_form.number_field :unit_price %>
-
-            <%= features_form.label :max_unit_limit %>
-            <%= features_form.number_field :max_unit_limit %>
-            
-        </li>
-    </ul>
-
-    <div>
-        <%= features_form.submit %>
-    </div>
-<% end %>
+<div class= 'container'>
+  <h1>New Feature</h1>
+  <%= render 'form' %>
+</div>

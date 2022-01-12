@@ -1,0 +1,25 @@
+<%= form_with(model: [ @plan, @plan.features.build]) do |features_form| %>
+  <div>    
+    <div  class='form-group'>
+      <%= features_form.label :'Feature Name' %>
+      <%= features_form.text_field :name, class: 'form-control' %>
+    </div>
+    <div  class='form-group'>
+      <%= features_form.label :'Feature Code' %>
+      <%= features_form.number_field :code, class: 'form-control' %>
+    </div>
+    <div  class='form-group'>
+      <%= features_form.label :'Feature unit price' %>
+      <%= features_form.number_field :unit_price, class: 'form-control' %>
+    </div>
+    <div  class='form-group'>
+      <%= features_form.label :'Feature max unit limit' %>
+      <%= features_form.number_field :max_unit_limit, class: 'form-control' %>  
+    </div>
+  </div>
+  <br>
+  <div>
+    <%= features_form.submit class:'btn btn-info' %>
+  </div>
+<% end %>
+

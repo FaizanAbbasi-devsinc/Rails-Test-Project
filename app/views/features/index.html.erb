@@ -1,31 +1,20 @@
 <h1>Features</h1>
 
-<table class="table table-hover">
+<table class='table table-hover'>
   <thead>
     <tr>
-      <th scope="col">Feature Id</th>
-      <th scope="col">Name</th>
-      
-      <th scope="col">Code</th>
-      <th scope="col">Unit Price</th>
-      <th scope="col">Max Usage Limit</th>
-      <th scope="col">Plan Id </th>
+      <th scope='col'>Feature Id</th>
+      <th scope='col'>Name</th>
+      <th scope='col'>Code</th>
+      <th scope='col'>Unit Price</th>
+      <th scope='col'>Max Usage Limit</th>
+      <th scope='col'>Plan Id </th>
     </tr>
   </thead>
   <tbody>
-    <% @features.each do |feature| %>
-    <tr>
-      <th scope="row"><%= feature.id %></th>
-      <th scope="row"><%= feature.name %></th>
-      
-      <td><%= feature.code %></td>
-      <td><%= feature.unit_price %></td>
-      <td><%= feature.max_unit_limit %></td> 
-      <td><%= feature.plan_id %> </td>
-    </tr>
-    <% end %>
+    <%= render partial: 'feature', collection: @features %>
   </tbody>
 </table>
-
-
-<%= link_to 'Add New Feature', new_plan_feature_path(@features.first.plan_id) %>
+<% if current_user.admin? %>
+  <%= link_to 'Add New Feature', new_plan_feature_path(@features.first.plan_id) %>
+<% end %>

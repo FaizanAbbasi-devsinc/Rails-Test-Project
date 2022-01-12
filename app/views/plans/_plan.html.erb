@@ -1,0 +1,14 @@
+<tr>
+  <td><%= plan.name %></td>
+  <td><%= plan.monthly_fee %></td>
+  <% if current_user.admin? %>
+    <td><%= plan.user_id %></td>
+    <td><%= plan.id %></td>
+  <% end %>
+  <td><%= link_to 'Click to See Features', plan_features_path(plan) %></td>
+  <% if findsubscriptions(current_user, plan.id) %>
+    <td><%= button_to 'Un-Subscribe' , subscription_path(plan.id), remote: true, method: :delete %></td>
+  <% else %>
+    <td><%= button_to 'Click to Subscribe' , checkout_index_path, params: {id: plan.id}, remote: true %></td>
+  <% end %>
+</tr>
