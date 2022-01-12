@@ -10,17 +10,7 @@
       <th scope="col">Admin Status</th>
     </tr>
   </thead>
-  <% @users.each do |user| %>
-    <tbody>
-        <tr>
-        <th scope="row"><%= user.id %></th>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td></td>
-        </tr>
-    </tbody>
-  <% end %>
+    <%= render partial: "users", collection: @users %>
 </table>
 
 <br>

@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
                                                   payment_method_types: ['card'],
                                                   line_items: [{
                                                     name: plan.name,
-                                                    amount: plan.monthly_fee.to_i,
+                                                    amount: plan.monthly_fee.to_i * 100,
                                                     currency: 'usd',
                                                     quantity: 1
                                                   }],
@@ -38,7 +38,7 @@ class CheckoutController < ApplicationController
 
   def add_transaction(subscriptions_id, amount)
     @transaction = Transaction.new(subscription_id: subscriptions_id, amount: amount, user_id: current_user.id,
-                                   transactions_date: Time.zone.now)
+                                   transactions_date: Time.zone.now, bill_status: 0)
     return unless @transaction.save
 
     SubscriptionConfirmationMailer.with(user: current_user,
