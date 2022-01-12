@@ -2,18 +2,17 @@
 
 class FeaturesController < ApplicationController
   def index
-    # byebug
-    @plan = Plan.find(params[:plan_id])
+    set_plan
     @features = @plan.features
   end
 
   def new
-    @plan = Plan.find params[:plan_id]
+    set_plan
     @feature = Feature.new
   end
 
   def create
-    @plan = Plan.find(params[:plan_id])
+    set_plan
     @feature = @plan.features.create(feature_params)
     if @feature.save
       redirect_to plans_path
@@ -26,5 +25,9 @@ class FeaturesController < ApplicationController
 
   def feature_params
     params.require(:feature).permit(:id, :name, :code, :unit_price, :max_unit_limit)
+  end
+
+  def set_plan
+    @plan = Plan.find params[:plan_id]
   end
 end
