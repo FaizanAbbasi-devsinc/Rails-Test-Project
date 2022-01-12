@@ -5,9 +5,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-  has_many :subscriptions
+
+  has_many :subscriptions, dependent: :destroy
   has_many :plans, through: :subscriptions
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
   enum role: { admin: 0, buyer: 1 }
 end

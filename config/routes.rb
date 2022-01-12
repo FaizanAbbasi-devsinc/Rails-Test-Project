@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users
+  resources :usages, only: %i[index show edit update]
   resources :users, expect: %i[new create destroy]
   resources :plans
   resources :subscriptions
@@ -15,8 +16,8 @@ Rails.application.routes.draw do
     resources :features, only: %i[index new create]
   end
   resources :features, only: %i[show edit update destroy]
-  post 'checkout/create', to: "checkout#create"
-  get 'checkout/add_subscription', to: "checkout#add_subscription"
+  post 'checkout/create', to: 'checkout#create'
+  get 'checkout/add_subscription', to: 'checkout#add_subscription'
   resources :checkout, only: [:create]
   get 'home' => 'pages#home'
 end

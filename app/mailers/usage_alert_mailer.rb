@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class UsageAlertMailer < ApplicationMailer
-  
   def extra_usage_email
     @user = params[:user]
     @usage  = params[:usage]

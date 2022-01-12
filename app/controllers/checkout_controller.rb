@@ -20,8 +20,9 @@ class CheckoutController < ApplicationController
     end
   end
 
-  def add_subscription # rubocop:disable Metrics/AbcSize
-    @subscription = Subscription.new(plan_id: params[:plan_id], user_id: current_user.id, date: Time.zone.now, status: 0)
+  def add_subscription
+    @subscription = Subscription.new(plan_id: params[:plan_id], user_id: current_user.id, date: Time.zone.now,
+                                     status: 0)
     if @subscription.save
       sub_id = @subscription.id
       amount = @subscription.plan.monthly_fee
@@ -36,11 +37,12 @@ class CheckoutController < ApplicationController
   private
 
   def add_transaction(subscriptions_id, amount)
-    @transaction = Transaction.new(subscription_id: subscriptions_id, amount: amount, user_id: current_user.id,transactions_date: Time.zone.now)
-    if @transaction.save
-      SubscriptionConfirmationMailer.with(user: current_user, transaction: @transaction).subscription_confirmation.deliver_now!
-      byebug
-    end
+    @transaction = Transaction.new(subscription_id: subscriptions_id, amount: amount, user_id: current_user.id,
+                                   transactions_date: Time.zone.now)
+    return unless @transaction.save
+
+    SubscriptionConfirmationMailer.with(user: current_user,
+                                        transaction: @transaction).subscription_confirmation.deliver_now!
   end
 
   def add_usage(subscriptions_id)

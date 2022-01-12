@@ -6,6 +6,6 @@ class Feature < ApplicationRecord
   validates :unit_price, presence: true, numericality: { other_than: 0 }
   validates :max_unit_limit, presence: true, numericality: { other_than: 0 }
   validates :code, presence: true, numericality: { other_than: 0 }
-  
+
   belongs_to :plan
 end
