@@ -84,4 +84,6 @@ Rails.application.configure do
     password: ENV['MAIL_PASSWORD'],
     authentication: 'plain'
   }
+
+  config.active_job.queue_adapter = :async
 end

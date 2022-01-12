@@ -26,6 +26,7 @@ class CheckoutController < ApplicationController
     if @subscription.save
       sub_id = @subscription.id
       amount = @subscription.plan.monthly_fee
+      AutoUnsubscribeJob.set(wait: 70.seconds).perform_later(@subscription.plan.id, current_user.id)
       add_transaction(sub_id, amount)
       add_usage(sub_id)
       redirect_to plans_path

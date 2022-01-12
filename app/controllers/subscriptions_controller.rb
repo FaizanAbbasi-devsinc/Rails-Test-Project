@@ -12,13 +12,6 @@ class SubscriptionsController < ApplicationController
     @user.subscriptions.where(plan_id: params[:id]).destroy_all
   end
 
-  # def update
-  #   @user = User.find(current_user.id)
-  #   z = @user.subscriptions.where(plan_id: params[:id])
-  #   z.update(status: 1)
-  #   redirect_to subscriptions_path
-  # end
-
   private
 
   def check_bill(plan_id)
@@ -29,11 +22,17 @@ class SubscriptionsController < ApplicationController
       flash[:success] = 'you unsubscribe successfully'
       redirect_to subscriptions_path
     else
-      @transaction = Transaction.create(subscription_id: @sub_id.id, amount: @extra_bill_amount, 
+      @transaction = Transaction.create(subscription_id: @sub_id.id, amount: @extra_bill_amount,
                                         user_id: current_user.id, transactions_date: Time.zone.now, bill_status: 1)
       flash[:success] =
         'you unsubscribe successfully & bill has been charged againt your extra usage units.'
       redirect_to plans_path
     end
   end
+  # def update
+  #   @user = User.find(current_user.id)
+  #   z = @user.subscriptions.where(plan_id: params[:id])
+  #   z.update(status: 1)
+  #   redirect_to subscriptions_path
+  # end
 end

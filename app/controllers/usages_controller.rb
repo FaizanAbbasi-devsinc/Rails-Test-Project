@@ -23,7 +23,7 @@ class UsagesController < ApplicationController
     @usage['used_unit'] += usage_params[:used_unit].to_i
     if @usage.update(used_unit: @usage['used_unit'])
       flash[:success] = 'Usage Saved.'
-      check_usage(@usage)
+      check_usage
     else
       # flash.now[:notice] = 'Usage can not be saved, please try again.'
       render :new
@@ -36,7 +36,7 @@ class UsagesController < ApplicationController
     params.require(:usage).permit(:used_unit)
   end
 
-  def check_usage(_usage)
+  def check_usage
     if @usage.used_unit > @usage.max_unit_limit
       @extra_units = @usage.used_unit.to_i - @usage.max_unit_limit.to_i
       @extra_units_price = Feature.find(@usage.features_id).unit_price.to_i * @extra_units
