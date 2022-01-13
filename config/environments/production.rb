@@ -8,7 +8,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.action_mailer.default_url_options = { host: ENV['LOCAL_SERVER_ADDRESS'], port: ENV['LOCAL_SERVER_PORT'] }
+  # config.action_mailer.default_url_options = { host: ENV['SERVER_ADDRESS'], port: ENV['LOCAL_SERVER_PORT'] }
+  config.action_mailer.default_url_options = { host: ENV['APP_URL'] }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -120,4 +121,13 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'example.com',
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD'],
+    authentication: 'plain'
+  }
 end
