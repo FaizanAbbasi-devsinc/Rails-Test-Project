@@ -9,7 +9,9 @@
         <th scope='col'>Plan Id</th>
       <% end %>
       <th scope='col'>Features Details</th>
-      <th scope='col'>Subscription Status</th>
+      <% if current_user.buyer? %>
+        <th scope='col'>Subscription Status</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
