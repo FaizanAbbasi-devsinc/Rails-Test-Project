@@ -2,10 +2,10 @@
 
 class ChangeDefaultValue < ActiveRecord::Migration[6.1]
   def up
-    change_column_default :users, :role, 1
+    change_column :users, :role, :integer, deafult: 1
   end
 
   def down
-    change_column_default :users, :role, 0
+    change_column :users, :role, :integer, deafult: 0
   end
 end
