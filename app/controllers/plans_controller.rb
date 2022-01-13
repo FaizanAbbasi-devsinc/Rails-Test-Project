@@ -14,9 +14,11 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     @plan.user_id = current_user.id
     if @plan.save
+      flash[:success] = 'Plan Created Successfully.'
       redirect_to plans_path
     else
-      render 'plans/new'
+      flash[:danger] = 'Please Enter Correct Details For Plan.'
+      redirect_to new_plan_path
     end
   end
 
