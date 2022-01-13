@@ -18,7 +18,7 @@ class PlansController < ApplicationController
       redirect_to plans_path
     else
       flash[:danger] = 'Please Enter Correct Details For Plan.'
-      redirect_to new_plan_path
+      render :new
     end
   end
 

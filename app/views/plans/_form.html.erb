@@ -1,29 +1,30 @@
 <%= form_with model: @plan do |form| %>
+  <%= render 'layouts/errors', object: @plan %>
   <div  class='form-group'>
     <%= form.label :'Plan Name' %><br>
-    <%= form.text_field :name , class: 'form-control'%>
+    <%= form.text_field :name , required: true, class: 'form-control'%>
   </div>
   <div  class='form-group'>
     <%= form.label :'Plan Monthly Fee' %><br>
-    <%= form.number_field :monthly_fee, class: 'form-control'%>
+    <%= form.number_field :monthly_fee, required: true, min: 1, class: 'form-control'%>
   </div>
   <div>
     <%= form.fields_for :features do |features_form| %>
       <div  class='form-group'>
         <%= features_form.label :'Feature Name' %>
-        <%= features_form.text_field :name, class: 'form-control' %>
+        <%= features_form.text_field :name, required: true, class: 'form-control' %>
       </div>
       <div  class='form-group'>
         <%= features_form.label :'Feature Code' %>
-        <%= features_form.number_field :code, class: 'form-control' %>
+        <%= features_form.number_field :code, required: true, min: 1, class: 'form-control' %>
       </div>
       <div  class='form-group'>
         <%= features_form.label :'Feature unit price' %>
-        <%= features_form.number_field :unit_price, class: 'form-control' %>
+        <%= features_form.number_field :unit_price, required: true, min: 1, class: 'form-control' %>
       </div>
       <div  class='form-group'>
         <%= features_form.label :'Feature max unit limit' %>
-        <%= features_form.number_field :max_unit_limit, class: 'form-control' %>  
+        <%= features_form.number_field :max_unit_limit, min: 1, class: 'form-control' %>  
       </div>
       <br>
     <% end %>

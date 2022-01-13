@@ -3,7 +3,7 @@
 class CheckoutController < ApplicationController
   def create
     plan = Plan.find(params[:id])
-    url = checkout_add_subscription_url(plan_id: plan.id)
+    url = add_subscription_checkout_index_url(plan_id: plan.id)
     @session = StripeService.new(plan, url).strip_payment
     respond_to do |format|
       format.js
