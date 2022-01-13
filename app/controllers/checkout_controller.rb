@@ -11,7 +11,7 @@ class CheckoutController < ApplicationController
   end
 
   def add_subscription
-    @subscription = Subscription.new(plan_id: params[:plan_id], user_id: current_user.id, date: Time.zone.now,
+    @subscription = Subscription.new(plan_id: params[:plan_id], user_id: current_user.id, date: Time.current,
                                      status: 0)
     if @subscription.save
       sub_id = @subscription.id
@@ -29,7 +29,7 @@ class CheckoutController < ApplicationController
 
   def add_transaction(subscriptions_id, amount)
     @transaction = Transaction.new(subscription_id: subscriptions_id, amount: amount, user_id: current_user.id,
-                                   transactions_date: Time.zone.now, bill_status: 0)
+                                   transactions_date: Time.current, bill_status: 0)
     return unless @transaction.save
 
     SubscriptionConfirmationMailer.with(user: current_user,

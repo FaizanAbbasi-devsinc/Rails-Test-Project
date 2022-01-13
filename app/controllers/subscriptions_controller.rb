@@ -26,7 +26,7 @@ class SubscriptionsController < ApplicationController
       redirect_to subscriptions_path
     else
       @transaction = Transaction.create(subscription_id: @sub_id.id, amount: @extra_bill_amount,
-                                        user_id: current_user.id, transactions_date: Time.zone.now, bill_status: 1)
+                                        user_id: current_user.id, transactions_date: Time.current, bill_status: 1)
       flash[:success] =
         'you unsubscribe successfully & bill has been charged againt your extra usage units.'
       redirect_to plans_path
