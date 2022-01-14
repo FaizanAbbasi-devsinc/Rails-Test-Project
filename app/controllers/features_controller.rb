@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 class FeaturesController < ApplicationController
+  before_action :set_plan, only: %i[index new create]
+
   def index
-    # byebug
-    @plan = Plan.find(params[:plan_id])
     @features = @plan.features
   end
 
   def new
-    @plan = Plan.find params[:plan_id]
     @feature = Feature.new
   end
 
   def create
-    @plan = Plan.find(params[:plan_id])
     @feature = @plan.features.new(feature_params)
     if @feature.save
       redirect_to plans_path
@@ -23,6 +21,10 @@ class FeaturesController < ApplicationController
   end
 
   private
+
+  def set_plan
+    @plan = Plan.find(params[:plan_id])
+  end
 
   def feature_params
     params.require(:feature).permit(:id, :name, :code, :unit_price, :max_unit_limit)
