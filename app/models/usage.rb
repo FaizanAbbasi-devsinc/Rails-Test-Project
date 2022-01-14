@@ -3,7 +3,7 @@
 class Usage < ApplicationRecord
   validates :used_unit, presence: true
   belongs_to :subscription
-  after_update :check_usage, if: :saved_change_to_used_unit?
+  # after_update :check_usage, if: :saved_change_to_used_unit?
 
   def check_usage
     if used_unit > max_unit_limit
