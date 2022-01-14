@@ -16,7 +16,6 @@ class Usage < ApplicationRecord
                          else
                            0
                          end
-      byebug
                          save
       # if usage.update(extra_usage_bill: @extra_units_price)
       #   UsageAlertMailer.with(user: current_user, usage: @usage).extra_usage_email.deliver_now!
