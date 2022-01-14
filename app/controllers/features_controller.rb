@@ -4,7 +4,7 @@ class FeaturesController < ApplicationController
   before_action :set_plan, only: %i[index new create]
 
   def index
-    @features = @plan.features
+    @features = @plan.features unless @plan.nil?
   end
 
   def new
@@ -24,7 +24,7 @@ class FeaturesController < ApplicationController
   private
 
   def set_plan
-    @plan = Plan.find(params[:plan_id])
+    @plan = Plan.find_by(id: params[:plan_id])
   end
 
   def feature_params

@@ -16,5 +16,5 @@
   </tbody>
 </table>
 <% if current_user.admin? %>
-  <%= link_to 'Add New Feature', new_plan_feature_path(@features.first.plan_id) %>
+  <%= link_to 'Add New Feature', new_plan_feature_path(@features&.first&.plan_id) %>
 <% end %>

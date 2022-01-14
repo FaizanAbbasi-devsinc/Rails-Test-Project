@@ -7,7 +7,7 @@ class UsagesController < ApplicationController
   end
 
   def show
-    sub_id = Subscription.includes(:usages).find(params[:id])
+    sub_id = Subscription.includes(:usages).find_by(id: params[:id])
     @usages = sub_id.usages
   end
 
@@ -35,6 +35,6 @@ class UsagesController < ApplicationController
   end
 
   def set_usage
-    @usage = Usage.find(params[:id])
+    @usage = Usage.find_by(id: params[:id])
   end
 end
