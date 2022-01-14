@@ -10,4 +10,12 @@ class User < ApplicationRecord
   has_many :plans, through: :subscriptions
   has_many :transactions, dependent: :destroy
   enum role: { admin: 0, buyer: 1 }
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end

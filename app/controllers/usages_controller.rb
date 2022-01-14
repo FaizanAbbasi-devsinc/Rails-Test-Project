@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsagesController < ApplicationController
+  before_action :set_usage, only: %i[edit update]
   def index
     @usages = Usage.all
   end
@@ -14,18 +15,15 @@ class UsagesController < ApplicationController
     @usage = Usage.new
   end
 
-  def edit
-    @usage = Usage.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @usage = Usage.find(params[:id])
     @usage['used_unit'] += usage_params[:used_unit].to_i
     if @usage.update(used_unit: @usage['used_unit'])
       flash[:success] = 'Usage Saved.'
       check_usage
     else
-      # flash.now[:notice] = 'Usage can not be saved, please try again.'
+      flash[:danger] = 'Usage can not be saved, please try again.'
       render :new
     end
   end
@@ -34,6 +32,10 @@ class UsagesController < ApplicationController
 
   def usage_params
     params.require(:usage).permit(:used_unit)
+  end
+
+  def set_usage
+    @usage = Usage.find(params[:id])
   end
 
   def check_usage

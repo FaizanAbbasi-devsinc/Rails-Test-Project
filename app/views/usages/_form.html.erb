@@ -1,19 +1,8 @@
 <%= form_for(@usage) do |f| %>
-  <% if @usage.errors.any? %>
-    <div id='errorExplanation'>
-      <h2>
-        <%= pluralize(@usage.errors.count, 'error') %> prohibited this post from being saved.
-      </h2>
-      <ul>
-        <% @usage.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/errors', object: @usage %>
   <div class='field'>
     <%= f.label :'Enter Used Unit' %>
-    <%= f.text_field :used_unit %>
+    <%= f.number_field :used_unit, required: true, min: 1 %>
   </div>
   <div class='actions'>
     <%= f.submit %>
