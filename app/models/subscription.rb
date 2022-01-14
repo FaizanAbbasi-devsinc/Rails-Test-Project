@@ -16,6 +16,6 @@ class Subscription < ApplicationRecord
     return unless @extra_bill_amount.nonzero?
 
     @transaction = Transaction.create(subscription_id: id, amount: @extra_bill_amount,
-                                      user_id: user.id, transactions_date: Time.current, bill_status: 1)
+                                      user_id: user.id, transactions_date: Time.current, bill_status: 'unpaid')
   end
 end

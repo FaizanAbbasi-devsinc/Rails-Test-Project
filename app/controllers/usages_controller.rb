@@ -7,8 +7,8 @@ class UsagesController < ApplicationController
   end
 
   def show
-    sub_id = Subscription.find(params[:id])
-    @usages = sub_id.usages.all
+    sub_id = Subscription.includes(:usages).find(params[:id])
+    @usages = sub_id.usages
   end
 
   def create
@@ -18,12 +18,12 @@ class UsagesController < ApplicationController
   def edit; end
 
   def update
-    @usage['used_unit'] += usage_params[:used_unit].to_i
-    if @usage.update(used_unit: @usage['used_unit'])
+    new_usage = @usage['used_unit'] + usage_params[:used_unit].to_i
+    if @usage.update(used_unit: new_usage)
       flash[:success] = 'Usage Saved.'
-      check_usage
+      redirect_to subscriptions_path
     else
-      flash[:danger] = 'Usage can not be saved, please try again.'
+      @usage.errors.full_messages
       render :new
     end
   end
@@ -31,25 +31,10 @@ class UsagesController < ApplicationController
   private
 
   def usage_params
-    params.require(:usage).permit(:used_unit)
+    params.require(:usage).permit(:id, :used_unit)
   end
 
   def set_usage
     @usage = Usage.find(params[:id])
-  end
-
-  def check_usage
-    if @usage.used_unit > @usage.max_unit_limit
-      @extra_units = @usage.used_unit.to_i - @usage.max_unit_limit.to_i
-      @extra_units_price = Feature.find(@usage.features_id).unit_price.to_i * @extra_units
-      if @usage.update(extra_usage_bill: @extra_units_price)
-        UsageAlertMailer.with(user: current_user, usage: @usage).extra_usage_email.deliver_now!
-        redirect_to subscriptions_path
-      else
-        flash.now[:notice] = 'Extra Bill Not be saved, please try again.'
-      end
-    else
-      redirect_to subscriptions_path
-    end
   end
 end

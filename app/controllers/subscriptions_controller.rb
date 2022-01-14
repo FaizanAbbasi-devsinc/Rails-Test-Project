@@ -10,11 +10,13 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    return unless current_user.buyer?
+
     if current_user.subscriptions.where(plan_id: params[:id]).destroy_all
       flash[:success] = 'You Unsubscribe Successfully.'
       redirect_to plans_path
     else
-      flash[:danger] = 'You Unsubscription Failed.'
+      current_user.subscriptions.errors.full_messages
       redirect_to subscriptions_path
     end
   end

@@ -13,11 +13,12 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     @plan.user_id = current_user.id
+    # current_user.plan.build(plan_params)
     if @plan.save
       flash[:success] = 'Plan Created Successfully.'
       redirect_to plans_path
     else
-      flash[:danger] = 'Please Enter Correct Details For Plan.'
+      @plan.errors.full_messages
       render :new
     end
   end

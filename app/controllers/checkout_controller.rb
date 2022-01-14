@@ -21,7 +21,7 @@ class CheckoutController < ApplicationController
       add_usage(sub_id)
       redirect_to plans_path
     else
-      flash[:success] = 'Subscription Buying Error'
+      @subscription.errors.full_messages
       redirect_to root_path
     end
   end
@@ -30,7 +30,7 @@ class CheckoutController < ApplicationController
 
   def add_transaction(subscriptions_id, amount)
     @transaction = Transaction.new(subscription_id: subscriptions_id, amount: amount, user_id: current_user.id,
-                                   transactions_date: Time.current, bill_status: 0)
+                                   transactions_date: Time.current, bill_status: 'paid')
     return unless @transaction.save
 
     SubscriptionConfirmationMailer.with(user: current_user,
@@ -38,10 +38,9 @@ class CheckoutController < ApplicationController
   end
 
   def add_usage(subscriptions_id)
-    a = Subscription.find(subscriptions_id)
-    features = a.plan.features
+    features = Subscription.find(subscriptions_id).plan.features
     features.each do |feature|
-      Usage.create!(subscription_id: a.id, features_id: feature.id, max_unit_limit: feature.max_unit_limit)
+      Usage.create!(subscription_id: subscriptions_id, features_id: feature.id, max_unit_limit: feature.max_unit_limit)
     end
   end
 end

@@ -16,6 +16,7 @@ class FeaturesController < ApplicationController
     if @feature.save
       redirect_to plans_path
     else
+      @feature.errors.full_messages
       redirect_to plan_features_path(@feature.plan_id)
     end
   end

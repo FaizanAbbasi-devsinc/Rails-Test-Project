@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         format.html { redirect_to current_user, notice: 'You Successfully updated your Profile' }
       else
+        @user.errors.full_messages
         format.html { render :edit, status: :unprocessable_entity }
       end
     end

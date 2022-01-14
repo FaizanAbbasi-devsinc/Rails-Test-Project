@@ -11,7 +11,7 @@ class AutoUnsubscribeJob < ApplicationJob
     return unless @extra_bill_amount.nonzero?
 
     @transaction = Transaction.create(subscription_id: @sub_id.id, amount: @extra_bill_amount,
-                                      user_id: user_id, transactions_date: Time.current, bill_status: 1)
+                                      user_id: user_id, transactions_date: Time.current, bill_status: 'unpaid')
 
     @user.subscriptions.where(plan_id: plan_id).destroy_all
   end
