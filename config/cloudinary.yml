@@ -1,0 +1,6 @@
+production:
+  cloud_name: 'billingandrecurringsystemtesproject'
+  api_key: '656725453591382'
+  api_secret: '4uPjEY1jjCdoter7ZgwjSa2s1QY'
+  secure: true
+  cdn_subdomain: true
