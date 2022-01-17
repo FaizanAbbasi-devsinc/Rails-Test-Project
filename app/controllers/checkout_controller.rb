@@ -13,7 +13,7 @@ class CheckoutController < ApplicationController
   def add_subscription
     @subscription = Subscription.new(plan_id: params[:plan_id], user_id: current_user.id, date: Time.current,
                                      status: 0)
-    if @subscription.save!
+    if @subscription.save
       flash[:success] = 'Plan subscribe successfully'
       redirect_to plans_path
     else

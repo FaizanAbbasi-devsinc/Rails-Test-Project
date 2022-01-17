@@ -13,7 +13,6 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     @plan.user_id = current_user.id
-    # current_user.plan.build(plan_params)
     if @plan.save
       flash[:success] = 'Plan Created Successfully.'
       redirect_to plans_path

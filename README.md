@@ -43,6 +43,8 @@ public: Stripe Public Key
 test_mail: Testing Mail
 admin_mail: Admin Mail
 admin_mail_password: Admin Mail Password
+database_username: db_username
+database_password: db_password
 ```
 Run the following command in terminal:
 ```bash

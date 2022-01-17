@@ -19,7 +19,7 @@ class UsagesController < ApplicationController
 
   def update
     new_usage = @usage['used_unit'] + usage_params[:used_unit].to_i
-    if @usage.update!(used_unit: new_usage)
+    if @usage.update(used_unit: new_usage)
       flash[:success] = 'Usage Saved.'
       redirect_to subscriptions_path
     else

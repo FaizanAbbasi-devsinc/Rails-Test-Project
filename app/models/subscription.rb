@@ -35,8 +35,9 @@ class Subscription < ApplicationRecord
 
   def add_usage
     features = Subscription.find(self.id).plan.features
-    features.each do |feature|
-      Usage.create!(subscription_id: self.id, features_id: feature.id, max_unit_limit: feature.max_unit_limit)
-    end
+    return if features.blank?
+      features.each do |feature|
+        Usage.create!(subscription_id: self.id, features_id: feature.id, max_unit_limit: feature.max_unit_limit)
+      end
   end
 end
