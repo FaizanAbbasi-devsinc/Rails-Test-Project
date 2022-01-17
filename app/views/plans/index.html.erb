@@ -19,5 +19,6 @@
   </tbody>
 </table>
 <% if current_user.admin? %>
-  <%= link_to 'Add New Plan', new_plan_path, class:'btn btn-info' %>
+  <%= link_to 'Add New Plan', new_plan_path, class:'btn btn-info mb-3' %>
 <% end %>
+<%= link_to 'Back', :back %>
