@@ -4,6 +4,9 @@
     <%= form.label :Name %>
     <%= form.text_field :name , class: 'form-control mb-3' %>
   </div>
+  <div class=”field”> (Upload your new profile picture below!)
+    <%= form.file_field :avatar %> 
+  </div>
   <div class='actions'>
     <%= form.submit class:'btn btn-info' %>
     <%= link_to 'Cancel', users_path, class: 'btn btn-info' %>

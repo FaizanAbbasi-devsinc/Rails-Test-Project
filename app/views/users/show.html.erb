@@ -7,6 +7,12 @@
   <strong>Name : </strong>
   <%= @user.name %> 
 </p>
+<div class='mb-5'>
+  <strong>Profile Image : </strong>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, class:'img-thumbnail' %>
+  <% end %>
+</div>
 <% if current_user.id == @user.id %>
   <%= link_to 'Edit My Profile', edit_user_path(current_user), class: 'btn btn-info mb-3' %>
 <% end %>

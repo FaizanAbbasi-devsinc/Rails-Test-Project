@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ .img-thumbnail {
+  border: 1px solid #ddd;	/* thickness and color of border */
+  border-radius: 4px;		/* edge rounding of border */
+  width: 300px;				/* width of image (px or % or auto) */
+  height: 300px;				/* height of image (px or % or auto) */
+}
