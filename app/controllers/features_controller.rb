@@ -13,7 +13,7 @@ class FeaturesController < ApplicationController
 
   def create
     @feature = @plan.features.new(feature_params)
-    if @feature.save
+    if @feature.save!
       redirect_to plans_path
     else
       @feature.errors.full_messages

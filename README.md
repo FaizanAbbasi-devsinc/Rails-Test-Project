@@ -53,6 +53,31 @@ Now run following to start the server:
 ```bash
   rails server
 ```
+### Setting Up Envriromental Variable:
+* Create a file config/local_env.yml
+
+```bash
+MAIL_USERNAME: 'Your_Username'
+MAIL_PASSWORD: 'Your_Password'
+```
+* Setting in .gitignore If you have created a git repository for your application, your application root directory should contain a file named .gitignore. add
+below line in your .gitignore file.
+
+```bash
+/config/local_env.yml
+```
+
+* After setting env variables,we have to set local_env.yml file into config/application.rb file. in the config/application.rb file: add the below code:
+
+```bash
+config.before_configuration do
+  env_file = File.join(Rails.root, 'config', 'local_env.yml')
+  YAML.load(File.open(env_file)).each do |key, value|
+    ENV[key.to_s] = value
+  end if File.exists?(env_file)
+end
+```
+
 # Features
 * There are two roles in application, Admin and Buyer.
 * Admin is responsible for creating plans and features.
