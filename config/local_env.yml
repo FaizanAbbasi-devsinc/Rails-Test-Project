@@ -1,5 +1,0 @@
-MAIL_USERNAME: 'faizan.shoukat@devsinc.com'
-MAIL_PASSWORD: 'rqmurmumlbproyuo'
-APP_URL: 'https://billing-system-rails.herokuapp.com/'
-# LOCAL_SERVER_PORT: '3000'
-RESET_PASSWORD_TIME: 6.hours
